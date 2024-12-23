@@ -8,15 +8,17 @@ const app = express();
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('MongoDB connected successfully'))
-.catch((error) => {
-  console.error('MongoDB connection error:', error);
-  process.exit(1);
-});
+(async () => {
+  try {
+    await mongoose.connect(`${process.env.MONGODB_URI}/Alpha`, {
+    });
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+    process.exit(1);
+  }
+})();
+
 
 
 // User Schema
