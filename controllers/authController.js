@@ -41,13 +41,11 @@ const signIn = async (req, res) => {
       return res.status(400).json({ error: 'Email and password are required' });
     }
 
-    // Find user
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
-    // Verify password using comparePassword method
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
       return res.status(401).json({ error: 'Invalid email or password' });
@@ -65,5 +63,9 @@ const signIn = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+const getData = async(req,res) =>{
 
-module.exports = { signUp, signIn };
+
+};
+
+module.exports = { signUp, signIn,getData };
