@@ -1,5 +1,4 @@
 const User = require('../models/userModel');
-const jwt = require('jsonwebtoken');
 
 const signUp = async (req, res) => {
   try {
@@ -20,16 +19,8 @@ const signUp = async (req, res) => {
     const user = new User({ email, password });
     await user.save();
 
-    // Generate JWT token
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env.JWT_SECRET || 'your_jwt_secret_key',
-      { expiresIn: '24h' }
-    );
-
     res.status(201).json({
       message: 'User created successfully',
-      token,
       user: {
         id: user._id,
         email: user.email,
@@ -62,16 +53,8 @@ const signIn = async (req, res) => {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
-    // Generate JWT token
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env.JWT_SECRET || 'your_jwt_secret_key',
-      { expiresIn: '24h' }
-    );
-
     res.json({
       message: 'Sign in successful',
-      token,
       user: {
         id: user._id,
         email: user.email,
