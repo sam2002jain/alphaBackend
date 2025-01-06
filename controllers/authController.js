@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 
+
 const signUp = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -63,9 +64,5 @@ const signIn = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
-const getData = async(req,res) =>{
 
-
-};
-
-module.exports = { signUp, signIn,getData };
+module.exports = { signUp, signIn };
