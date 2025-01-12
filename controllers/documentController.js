@@ -1,6 +1,6 @@
 const Document = require('../models/documentModel');
 
-const addDocument = async (req, res) => {
+const setDocument = async (req, res) => {
   try {
     const { title } = req.body;
 
@@ -24,4 +24,13 @@ const addDocument = async (req, res) => {
   }
 };
 
-module.exports = { addDocument };
+const getDocument = async(req,res)=>{
+  try{
+    const documents = await Document.find();
+    res.status(200).json(documents);
+  }catch(error){
+    res.status(500).json({error:'server error'})
+  }
+};
+
+module.exports = { setDocument,getDocument };
