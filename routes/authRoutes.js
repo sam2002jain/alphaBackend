@@ -1,14 +1,14 @@
 const express = require('express');
 const { signUp, signIn } = require('../controllers/authController');
-const { getDocument } = require('../controllers/documentController');
+const { setDocument, getDocument } = require('../controllers/documentController');
 
 const router = express.Router();
 
 // Routes
 router.post('/signup', signUp);
 router.post('/signin', signIn);
-router.post('/docdata', getDocument);
-router.get('/addtask', addDocument);
+router.post('/docdata', setDocument);
+router.get('/addtask', getDocument);
 
 
 module.exports = router;
